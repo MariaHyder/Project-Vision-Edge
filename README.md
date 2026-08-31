@@ -13,7 +13,7 @@ National University of Sciences and Technology (NUST CEME)
 
 | | |
 |---|---|
-| **Supervisor** | Ma'am Sidra Tul Muntaha |
+| **Supervisor** | Dr Sidra Tul Muntaha |
 | **Group Members** | Maria Hyder (486881), Raja Hassan Naeem (368667) |
 
 Vision-Edge classifies manufactured parts as **good** or **defective** from a camera image. A MobileNetV2 model is trained on a PC, then compressed to TensorFlow Lite (including full INT8) so the same pipeline can later run on embedded / FPGA hardware.
@@ -173,8 +173,6 @@ Keep these in sync. `threshold_analysis.py` is the script used to choose the cut
 | `models/optimized_defect.tflite` | Dynamic-range quantized TFLite for PC testing |
 | `models/optimized_defect_int8.tflite` | Full INT8 TFLite for embedded / FPGA toolchains |
 
-There is no `.h5` model. Use `.keras` only.
-
 `benchmark_latency.py` times inference on **this PC's CPU**. That is a baseline for the report, not an FPGA measurement.
 
 ---
@@ -196,8 +194,6 @@ There is no `.h5` model. Use `.keras` only.
 - Training uses on-disk caching (`cache/`) so epochs after the first are faster.
 - Data augmentation (flip, small rotation, brightness, contrast, zoom) is applied **only during training**.
 - The test folder is also used as validation during `model.fit`. That should be stated in the report; there is no separate validation split.
-
-Do not commit `cache/`, `src/__pycache__/`, or raw dataset images if they are large or restricted. Trained `.keras` / `.tflite` files may be kept in the repo so inference can run without retraining.
 
 ---
 
